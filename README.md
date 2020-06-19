@@ -1,3 +1,13 @@
-# ts-simple-boilerplate
+# Simple MVVM in TypeScript
 
-A simple TypeScript project bolierplate with only basic lint configuration.
+This frontend vue-like MVVM is a toy project for learning purpose.
+
+## Todos
+
+- Virtual DOM
+- DOM Patch Update
+- Runtime
+
+## Related Post
+
+## Reference Articles

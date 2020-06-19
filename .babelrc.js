@@ -1,6 +1,13 @@
 // more on https://babeljs.io/docs/en/presets#preset-options
 const presets = [
-  '@babel/preset-env',
+  [
+    '@babel/preset-env',
+    {
+      targets: {
+        node: 'current',
+      },
+    },
+  ],
   [
     '@babel/preset-typescript',
     {
@@ -14,7 +21,10 @@ const presets = [
   ],
 ];
 
-const plugins = ['@babel/plugin-proposal-class-properties'];
+const plugins = [
+  '@babel/plugin-transform-runtime',
+  '@babel/plugin-proposal-class-properties',
+];
 
 const ignore = ['dist', 'src/__tests__'];
 

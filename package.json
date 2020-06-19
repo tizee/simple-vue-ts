@@ -1,23 +1,24 @@
 {
-  "name": "ts-rollup-boilerplate",
+  "name": "simple-mvvm-ts",
   "version": "0.0.2",
-  "description": "A simple Typescript bolierplate with baisc rollup configuration",
+  "description": "A simple vue-like MVVM implemented in TypeScript",
   "author": "tizee",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier 'src/**/*.{ts,js,tsx,jsx}' --write",
     "ts-check": "tsc --noEmit",
     "ts-check:watch": "tsc --noEmit --watch",
-    "build": "npx rollup -c",
-    "dev": "npx rollup -c -w"
+    "prebuild": "rimraf dist",
+    "build:internal": "npx rollup -c --environment BUILD:internal",
+    "dev:internal": "npx rollup -c -w --environment BUILD:internal"
   },
-  "main": "dist/bundle.cjs.js",
-  "module": "dist/bundle.esm.js",
-  "browser": "dist/bundle.umd.js",
-  "types": "dist/types/index.d.ts",
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-typescript": "^7.10.1",
     "@rollup/plugin-babel": "^5.0.3",
@@ -30,7 +31,11 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
     "rollup": "^2.16.1",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.10.2"
   }
 }
