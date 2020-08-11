@@ -29,8 +29,18 @@ const bulids = {
     external: ['@babel/runtime'],
     babelHelpers: 'runtime',
   },
-  //  todo
-  'web-runtime': {},
+  runtime: {
+    input: ['src/mvvm.ts'],
+    output: {
+      dir: 'dist',
+      banner: banner,
+      name: 'MVVM',
+      format: 'iife',
+      entryFileNames: '[name].js',
+    },
+    external: ['@babel/runtime'],
+    babelHelpers: 'runtime',
+  },
 };
 
 function getConfig(name) {

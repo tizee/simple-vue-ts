@@ -12,16 +12,15 @@ export default class Observer {
   }
 
   walk(obj: Record<string, unknown>): void {
-    const keys = Object.keys(obj);
-    for (let i = 0; i < keys.length; i++) {
-      this.defineReactive(obj, keys[i]);
-    }
+    Reflect.ownKeys(obj).forEach(key => {
+      this.defineReactive(obj, key);
+    });
   }
 
   /**
-   * Define a reactive  property on an Object
+   * Define a reactive property on an Object
    */
-  defineReactive(obj: Record<string, unknown>, key: string, val?: any): void {
+  defineReactive(obj: Record<string, unknown>, key: any, val?: any): void {
     const dep = new Dep();
     const property = Object.getOwnPropertyDescriptor(obj, key);
     if (property && property.configurable === false) {
@@ -37,8 +36,8 @@ export default class Observer {
       get: function reactiveGetter() {
         const value = getter ? getter.call(obj) : val;
         if (Dep.target) {
-          // add dep to global dep watcher
-          // dep.depend();
+          // add watcher to global dep
+          dep.addSub(Dep.target);
         }
         return value;
       },

@@ -29,15 +29,14 @@ export default class Dep {
   depend(): void {
     // global dependencies watcher
     if (Dep.target) {
-      Dep.target.addDep(this);
     }
   }
 
   // notify all related subscirber (ViewModal)
   notify(): void {
     const _subs = this.subs.slice();
-    // sort by id in ascending order
-    _subs.sort((a, b) => a.id - b.id);
+    // sort by uid in ascending order
+    _subs.sort((a, b) => a.uid - b.uid);
     for (let i = 0; i < _subs.length; i++) {
       _subs[i].update();
     }

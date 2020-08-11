@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+    <style src="./index.css"></style>
+  </head>
+  <body>
+    <div id="app-root">
+      <div>
+        <span>A:{{A}}</span>
+        <span>B:{{B}}</span>
+      </div>
+    </div>
+  </body>
+  <script src="../dist/mvvm.js"></script>
+  <script>
+    let mvvm = new MVVM({
+      el: '#app-root',
+      data: {
+        A: 'this is A',
+        B: 'this is B',
+      },
+    });
+  </script>
+</html>

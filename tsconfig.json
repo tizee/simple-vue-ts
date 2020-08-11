@@ -11,8 +11,8 @@
         "isolatedModules": true, // Disallow features that require cross-file information for emit.
         "removeComments": true, // Remove all comments except copy-right header comments beginning with /*!
         "esModuleInterop": true, // Emit '__importStar' and '__importDefault' helpers for runtime babel ecosystem compatibility and enable '--allowSyntheticDefaultImports' for typesystem compatibility.
-        "lib": ["es6", "es7", "esnext", "dom"], // List of library files to be included in the compilation
-        "sourceMap": true, // Generates corresponding .map file.
+        "lib": ["es6", "esnext", "dom"], // List of library files to be included in the compilation
+        "sourceMap": false, // Generates corresponding .map file.
         "allowJs": true, // Allow javascript files to be compiled.
         /* Type checking Options */
         "strict": true, // Enable all strict type checking options.

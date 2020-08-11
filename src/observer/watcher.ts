@@ -1,35 +1,42 @@
 import Dep from './dep';
-import { SimpleSet } from '../../typings';
-// uid shared among Watchers
-let uid = 0;
+let id = 0;
 /**
  * Expression dependencies watcher
- * which publishs update callback when expression value changes.
+ * invoke update callback when expression value changes.
  */
 export default class Watcher {
-  id: number;
+  uid: number;
   expression: string;
-  deps: Array<Dep>;
-  depsId: SimpleSet;
+  cb: Function;
+  vm: any;
+  oldVal: any;
 
-  constructor(expression: string) {
-    this.id = uid++;
+  constructor(vm: any, expression: string, cb: Function) {
+    this.uid = id++;
+    this.vm = vm;
     this.expression = expression;
-    this.deps = [];
-    this.depsId = new Set();
+    this.cb = cb;
+    this.oldVal = this.getOldVal();
   }
 
-  // add dependency to current directive
-  addDep(dep: Dep): void {
-    const id = dep.id;
-    if (!this.depsId.has(id)) {
-      this.deps.push(dep);
-      this.depsId.add(id);
-    }
+  getOldVal() {
+    // add lock
+    console.log('Watcher: get old value', this.expression, this.vm);
+    Dep.target = this;
+    const oldVal = this.vm.getVal(this.expression);
+    // release lock
+    Dep.target = null;
+    return oldVal;
   }
 
   // publish to subscribers
   update(): void {
-    console.log('wathcer update');
+    // update only when value changes
+    console.log('Watcher: update', this.expression);
+    const newVal = this.vm.getVal(this.expression);
+    if (newVal !== this.oldVal) {
+      // update
+      this.cb(newVal);
+    }
   }
 }

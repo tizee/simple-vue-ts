@@ -12,7 +12,8 @@
     "ts-check:watch": "tsc --noEmit --watch",
     "prebuild": "rimraf dist",
     "build:internal": "npx rollup -c --environment BUILD:internal",
-    "dev:internal": "npx rollup -c -w --environment BUILD:internal"
+    "dev:internal": "npx rollup -c -w --environment BUILD:internal",
+    "build:runtime": "npx rollup -c -w --environment BUILD:runtime"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
